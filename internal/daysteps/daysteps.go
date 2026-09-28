@@ -27,16 +27,16 @@ func parsePackage(data string) (int, time.Duration, error) {
 	if err != nil {
 		return 0, 0, err
 	}
-	if steps < 0 {
-		return 0, 0, fmt.Errorf("Отрицательное количество шагов")
+	if steps <= 0 {
+		return 0, 0, fmt.Errorf("Некорректное количество шагов")
 	}
 
 	walkTime, err := time.ParseDuration(stepsAndWalk[1])
 	if err != nil {
 		return 0, 0, err
 	}
-	if walkTime < 0 {
-		return 0, 0, fmt.Errorf("Отрицательное время")
+	if walkTime <= 0 {
+		return 0, 0, fmt.Errorf("Некорректное время")
 	}
 
 	return steps, walkTime, nil
@@ -61,5 +61,5 @@ func DayActionInfo(data string, weight, height float64) string {
 		return ""
 	}
 
-	return fmt.Sprintf("Количество шагов: %d.\nДистанция составила: %.2f км.\nВы сожгли: %.2f ккал.", steps, distance, calories)
+	return fmt.Sprintf("Количество шагов: %d.\nДистанция составила %.2f км.\nВы сожгли %.2f ккал.\n", steps, distance, calories)
 }
